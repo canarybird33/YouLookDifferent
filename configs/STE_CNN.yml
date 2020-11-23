@@ -1,0 +1,57 @@
+MODEL:
+  PRETRAIN_PATH: '../datasets_weights/resnet50-19c8e357.pth'
+  NECK: 'bnneck'
+  NETWORK: STE_CNN
+  IF_LABELSMOOTH: 'on'
+
+INPUT:
+  SIZE_TRAIN: [128, 128]
+  SIZE_TEST: [128, 128]
+  PADDING : 10
+
+DATASETS:
+  NAMES: ('ltcc_noneID') # ltcc_noneID, prcc_noneID
+  #ROOT_DIR: '../datasets_weights/prcc/prcc_nonID/scratching'
+  #ROOT_DIR: '../datasets_weights/prcc/prcc_nonID/No_scratching'
+  ROOT_DIR: '../datasets_weights/LTCC_ReID/LTCC_nonID'
+
+  feat2_DIR: "None"
+
+DATALOADER:
+  SAMPLER: 'softmax'
+  Aug: True
+
+SOLVER:
+  OPTIMIZER_NAME: 'Adam'
+  BASE_LR: 0.00035
+  BIAS_LR_FACTOR: 1
+  WEIGHT_DECAY: 0.0005
+  WEIGHT_DECAY_BIAS: 0.0005
+  IMS_PER_BATCH: 128
+
+  STEPS: [30, 55]
+  GAMMA: 0.1
+
+  WARMUP_FACTOR: 0.01
+  WARMUP_ITERS: 5
+  WARMUP_METHOD: 'linear'
+
+  MAX_EPOCHS: 50
+  CHECKPOINT_PERIOD: 5
+  LOG_PERIOD: 50
+
+
+TEST:
+  IMS_PER_BATCH: 128
+  NECK_FEAT: 'after'
+  WEIGHT: ''
+
+TRAIN_MODE: "assign_new_IDs"
+
+OUTPUT_DIR: "./OUTPUT/STE_CNN"
+#Save_nonIDs_DIR: "../datasets_weights/prcc/prcc_nonID/feat2_by_STE_CNN"
+#Save_nonIDs_DIR: "../datasets_weights/prcc/prcc_nonID/feat2_by_STE_CNN"
+#Save_nonIDs_DIR: "../datasets_weights/LTCC_ReID/LTCC_nonID/feat2_by_STE_CNN"
+Save_nonIDs_DIR: "../datasets_weights/LTCC_ReID/LTCC_nonID/feat2_by_STE_CNN"
+
+

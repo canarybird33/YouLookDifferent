@@ -1,0 +1,36 @@
+MODEL:
+  PRETRAIN_CHOICE: 'imagenet'
+  PRETRAIN_PATH: '../datasets_weights/resnet50-19c8e357.pth'
+  NETWORK: "simple_baseline"
+
+INPUT:
+  SIZE_TRAIN: [128, 128]
+  SIZE_TEST: [128, 128]
+
+DATASETS:
+  NAMES: ('ltcc_orig') # ltcc_orig, prcc_orig
+  #ROOT_DIR: '../datasets_weights/prcc/prcc_orig'
+  ROOT_DIR: '../datasets_weights/LTCC_ReID/LTCC_orig'
+
+  feat2_DIR: "None"
+
+DATALOADER:
+  SAMPLER: 'softmax'
+
+SOLVER:
+  MAX_EPOCHS: 50
+  IMS_PER_BATCH: 128
+  CHECKPOINT_PERIOD: 1
+  LOG_PERIOD: 20
+
+
+# to test the 'simple_baseline' model, set the weight path
+TEST:
+  IMS_PER_BATCH: 128
+  WEIGHT: "./OUTPUT/simple_baseline/train_2020_Nov_16_19_56_20/resnet50_model_42.pth"
+
+TRAIN_MODE: ('orig_IDs')
+
+OUTPUT_DIR: "./OUTPUT/simple_baseline"
+
+
