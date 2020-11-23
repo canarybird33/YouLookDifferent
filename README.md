@@ -5,7 +5,7 @@ CVPR2021 supplementary materials.
 
 ## requirments:
 - python == 3.5
-- tensorflow == 1.13.2
+- tensorflow == 1.13.2 (To use Hifill image painting)
 - torch == 1.4.0
 - trochvision == 0.5.0
 - pytorch-ignite == 0.1.2
